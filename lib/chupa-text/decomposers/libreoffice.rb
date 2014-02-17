@@ -82,7 +82,8 @@ module ChupaText
       end
 
       def expand_candidate(candidate)
-        Dir.glob("/opt/libreoffice*/program/#{candidate}").first
+        Dir.glob("/opt/libreoffice*/program/#{candidate}").first or
+          Dir.glob("C:/Program Files*/libreoffice*/program/#{candidate}.exe").first
       end
 
       def convert_to_pdf(data)
