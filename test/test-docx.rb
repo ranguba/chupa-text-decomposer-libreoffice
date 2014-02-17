@@ -98,7 +98,7 @@ class TestDocx < Test::Unit::TestCase
 
     sub_test_case("one page") do
       def test_body
-        assert_equal(["Page1"], decompose.collect(&:body))
+        assert_equal(["Page1\n"], decompose.collect(&:body))
       end
 
       private
