@@ -81,7 +81,7 @@ class TestDocx < Test::Unit::TestCase
 
       def test_producer
         assert_equal(["LibreOffice X.Y"],
-                     normalize_producer(decompose("producer")))
+                     normalize_producers(decompose("producer")))
       end
 
       def test_creation_date
