@@ -42,4 +42,13 @@ module DecomposeHelper
     end
     decomposed
   end
+
+  def normalize_producer(producer)
+    return nil if producer.nil?
+    if /\ALibreOffice \d\.\d\z/ =~ producer
+      "LibreOffice X.Y"
+    else
+      producer
+    end
+  end
 end

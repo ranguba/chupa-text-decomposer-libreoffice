@@ -80,7 +80,8 @@ class TestDoc < Test::Unit::TestCase
       end
 
       def test_producer
-        assert_equal(["LibreOffice 4.1"], decompose("producer"))
+        assert_equal(["LibreOffice X.Y"],
+                     normalize_producer(decompose("producer")))
       end
 
       def test_creation_date
