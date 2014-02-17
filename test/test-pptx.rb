@@ -103,7 +103,7 @@ class TestPptx < Test::Unit::TestCase
 
     sub_test_case("one slide") do
       def test_body
-        assert_equal([<<-BODY.chomp], decompose.collect(&:body))
+        assert_equal([<<-BODY], decompose.collect(&:body))
 Slide1 title
 Slide1 content
         BODY
@@ -117,7 +117,7 @@ Slide1 content
 
     sub_test_case("multi slides") do
       def test_body
-        assert_equal([<<-BODY.chomp], decompose.collect(&:body))
+        assert_equal([<<-BODY], decompose.collect(&:body))
 Slide1 title
 Slide1 content
 Slide2 title

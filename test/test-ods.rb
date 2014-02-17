@@ -97,7 +97,7 @@ class TestOds < Test::Unit::TestCase
 
     sub_test_case("one sheet") do
       def test_body
-        assert_equal([<<-BODY.chomp], decompose.collect(&:body))
+        assert_equal([<<-BODY], decompose.collect(&:body))
 Sheet1 - A1
 Sheet1 - A2
 Sheet1 - B1
@@ -113,7 +113,7 @@ Sheet1 - B2
 
     sub_test_case("multi sheets") do
       def test_body
-        assert_equal([<<-BODY.chomp], decompose.collect(&:body))
+        assert_equal([<<-BODY], decompose.collect(&:body))
 Sheet1 - A1
 Sheet1 - A2
 Sheet1 - B1

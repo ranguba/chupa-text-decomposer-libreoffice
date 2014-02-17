@@ -108,7 +108,7 @@ class TestDocx < Test::Unit::TestCase
 
     sub_test_case("multi pages") do
       def test_body
-        assert_equal([<<-BODY.chomp], decompose.collect(&:body))
+        assert_equal([<<-BODY], decompose.collect(&:body))
 Page1
 Page2
         BODY
