@@ -1,10 +1,8 @@
 notifications:
-  recipients:
-    - groonga-commit@lists.sourceforge.jp
+  email:
+    recipients:
+      - groonga-commit@lists.osdn.me
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.0
-before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq -y libreoffice
+  - 2.2
+  - 2.3.3
+  - 2.4.1
