@@ -59,12 +59,6 @@ class TestPptx < Test::Unit::TestCase
     include DecomposeHelper
 
     sub_test_case("attributes") do
-      def setup
-        super
-        omit("We don't have pptx with attributes " +
-               "because LibreOffice 4.1 can't generate pptx with attributes.")
-      end
-
       def test_title
         assert_equal(["Title"], decompose("title"))
       end
