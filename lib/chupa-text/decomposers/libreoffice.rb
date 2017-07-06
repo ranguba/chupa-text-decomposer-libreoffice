@@ -94,7 +94,7 @@ module ChupaText
                                    "--nologo",
                                    "--convert-to", "pdf",
                                    "--outdir", temporary_directory,
-                                   data.path,
+                                   data.path.to_s,
                                    {
                                      :spawn_options => {
                                        :out => output.path,
@@ -123,7 +123,7 @@ module ChupaText
             return nil
           end
           File.open(pdf_path, "rb") do |pdf|
-            ChupaText::VirtualFileData.new(pdf_path, pdf)
+            ChupaText::VirtualFileData.new(pdf_path, pdf, :source_data => data)
           end
         end
       end
