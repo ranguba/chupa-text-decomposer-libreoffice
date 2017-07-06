@@ -2,6 +2,10 @@ notifications:
   email:
     recipients:
       - groonga-commit@lists.osdn.me
+addons:
+  apt:
+    packages:
+    - libreoffice
 rvm:
   - 2.2
   - 2.3.3
