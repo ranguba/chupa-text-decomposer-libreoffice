@@ -1,6 +1,6 @@
-# -*- mode: ruby; coding: utf-8 -*-
+# -*- ruby -*-
 #
-# Copyright (C) 2014  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2014-2017  Kouhei Sutou <kou@clear-code.com>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -34,7 +34,9 @@ end
 helper.install
 spec = helper.gemspec
 
-Packnga::DocumentTask.new(spec) do
+Packnga::DocumentTask.new(spec) do |task|
+  task.original_language = "en"
+  task.translate_language = "ja"
 end
 
 Packnga::ReleaseTask.new(spec) do
