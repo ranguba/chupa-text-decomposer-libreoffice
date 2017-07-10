@@ -1,4 +1,4 @@
-# Copyright (C) 2014  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2014-2017  Kouhei Sutou <kou@clear-code.com>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -20,11 +20,20 @@ require "tmpdir"
 module ChupaText
   module Decomposers
     class LibreOffice < Decomposer
+      include Loggable
+
       registry.register("libreoffice", self)
 
       def initialize(options)
         super
         @command = find_command
+        debug do
+          if @command
+            "#{log_tag}[command][found] #{@command}"
+          else
+            "#{log_tag}[command][not-found]"
+          end
+        end
       end
 
       TARGET_EXTENSIONS = [
@@ -102,30 +111,39 @@ module ChupaText
                                      },
                                    })
           unless succeeded
-            tag = "[decomposer][libreoffice][convert][exited][abnormally]"
-            message = [
-              tag,
-              "output: <#{output.read}>",
-              "error: <#{error.read}>",
-            ].join("\n")
-            ChupaText.logger.error(message)
+            error do
+              tag = "#{log_tag}[convert][exited][abnormally]"
+              [
+                tag,
+                "output: <#{output.read}>",
+                "error: <#{error.read}>",
+              ].join("\n")
+            end
             return nil
           end
           pdf_path, = Dir.glob("#{temporary_directory}/*.pdf")
           if pdf_path.nil?
-            tag = "[decomposer][libreoffice][convert][failed]"
-            message = [
-              "#{tag}: LibreOffice may be running",
-              "output: <#{output.read}>",
-              "error: <#{error.read}>",
-            ].join("\n")
-            ChupaText.logger.error(message)
+            error do
+              tag = "#{log_tag}[convert][failed]"
+              message = [
+                "#{tag}: LibreOffice may be running",
+                "output: <#{output.read}>",
+                "error: <#{error.read}>",
+              ].join("\n")
+            end
             return nil
           end
+          normalized_pdf_uri = data.uri.to_s.gsub(/\.[^.]+\z/, ".pdf")
           File.open(pdf_path, "rb") do |pdf|
-            ChupaText::VirtualFileData.new(pdf_path, pdf, :source_data => data)
+            ChupaText::VirtualFileData.new(normalized_pdf_uri,
+                                           pdf,
+                                           :source_data => data)
           end
         end
+      end
+
+      def log_tag
+        "[decomposer][libreoffice]"
       end
     end
   end
