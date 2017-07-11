@@ -98,7 +98,7 @@ module ChupaText
       def convert_to_pdf(data)
         Dir.mktmpdir do |temporary_directory|
           output = Tempfile.new("chupa-text-decomposer-libreoffice-output")
-          error = Tempfile.new("chupa-text-decomposer-libreoffice-error")
+          error_output = Tempfile.new("chupa-text-decomposer-libreoffice-error")
           succeeded = @command.run("--headless",
                                    "--nologo",
                                    "--convert-to", "pdf",
@@ -107,7 +107,7 @@ module ChupaText
                                    {
                                      :spawn_options => {
                                        :out => output.path,
-                                       :err => error.path,
+                                       :err => error_output.path,
                                      },
                                    })
           unless succeeded
@@ -116,7 +116,7 @@ module ChupaText
               [
                 tag,
                 "output: <#{output.read}>",
-                "error: <#{error.read}>",
+                "error: <#{error_output.read}>",
               ].join("\n")
             end
             return nil
@@ -128,7 +128,7 @@ module ChupaText
               message = [
                 "#{tag}: LibreOffice may be running",
                 "output: <#{output.read}>",
-                "error: <#{error.read}>",
+                "error: <#{error_output.read}>",
               ].join("\n")
             end
             return nil
