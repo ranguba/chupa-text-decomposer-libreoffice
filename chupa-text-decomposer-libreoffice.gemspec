@@ -41,6 +41,7 @@ Gem::Specification.new do |spec|
 
   spec.requirements << "LibreOffice"
 
+  spec.add_runtime_dependency("chupa-text", ">= 1.0.9")
   spec.add_runtime_dependency("chupa-text-decomposer-pdf")
 
   spec.add_development_dependency("bundler")
