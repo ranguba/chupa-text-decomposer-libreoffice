@@ -29,7 +29,7 @@ module ChupaText
         @command = find_command
         debug do
           if @command
-            "#{log_tag}[command][found] #{@command}"
+            "#{log_tag}[command][found] #{@command.path}"
           else
             "#{log_tag}[command][not-found]"
           end
