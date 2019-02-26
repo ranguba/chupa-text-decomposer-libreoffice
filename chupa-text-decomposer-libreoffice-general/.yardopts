@@ -1,0 +1,5 @@
+--output-dir doc/reference/en
+--markup markdown
+--markup-provider redcarpet
+-
+doc/text/*

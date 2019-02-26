@@ -1,5 +1,3 @@
-# -*- ruby -*-
-#
 # Copyright (C) 2019  Kouhei Sutou <kou@clear-code.com>
 #
 # This library is free software; you can redistribute it and/or
@@ -16,24 +14,23 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-require "pathname"
+require "chupa-text/decomposers/libreoffice-general"
 
-task :default => :test
+module ChupaText
+  module Decomposers
+    class LibreOfficePowerPoint < LibreOfficeGeneral
+      registry.register("libreoffice-powerpoint", self)
 
-desc "Run tests"
-task :test do
-  FileList["*/test/run-test.rb"].each do |run_test_rb|
-    cd(Pathname(run_test_rb).parent.parent) do
-      ruby("test/run-test.rb")
-    end
-  end
-end
+      def initialize(options)
+        super
+        @extension = "ppt"
+        @mime_type = "application/vnd.ms-powerpoint"
+      end
 
-desc "Release"
-task :release do
-  FileList["*/*.gemspec"].each do |gemspec|
-    cd(Pathname(gemspec).parent) do
-      ruby("-S", "rake", "release")
+      private
+      def log_tag
+        super + "[powerpoint]"
+      end
     end
   end
 end

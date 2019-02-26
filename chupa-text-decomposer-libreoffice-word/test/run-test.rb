@@ -1,6 +1,6 @@
-# -*- ruby -*-
+#!/usr/bin/env ruby
 #
-# Copyright (C) 2019  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2013  Kouhei Sutou <kou@clear-code.com>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -16,24 +16,16 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-require "pathname"
+$VERBOSE = true
 
-task :default => :test
+require "bundler/setup"
 
-desc "Run tests"
-task :test do
-  FileList["*/test/run-test.rb"].each do |run_test_rb|
-    cd(Pathname(run_test_rb).parent.parent) do
-      ruby("test/run-test.rb")
-    end
-  end
-end
+require "test-unit"
 
-desc "Release"
-task :release do
-  FileList["*/*.gemspec"].each do |gemspec|
-    cd(Pathname(gemspec).parent) do
-      ruby("-S", "rake", "release")
-    end
-  end
-end
+require "chupa-text"
+
+ChupaText::Decomposers.load
+
+require_relative "../../chupa-text-decomposer-libreoffice-general/test/helper"
+
+exit(Test::Unit::AutoRunner.run(true))

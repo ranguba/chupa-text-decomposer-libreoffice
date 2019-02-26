@@ -1,6 +1,6 @@
-# -*- ruby -*-
+# -*- mode: ruby; coding: utf-8 -*-
 #
-# Copyright (C) 2019  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2014-2019  Kouhei Sutou <kou@clear-code.com>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -16,24 +16,22 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-require "pathname"
+source "https://rubygems.org/"
 
-task :default => :test
+gemspec
 
-desc "Run tests"
-task :test do
-  FileList["*/test/run-test.rb"].each do |run_test_rb|
-    cd(Pathname(run_test_rb).parent.parent) do
-      ruby("test/run-test.rb")
-    end
-  end
-end
+base_dir = File.dirname(__FILE__)
 
-desc "Release"
-task :release do
-  FileList["*/*.gemspec"].each do |gemspec|
-    cd(Pathname(gemspec).parent) do
-      ruby("-S", "rake", "release")
-    end
+general = "chupa-text-decomposer-libreoffice-general"
+gem general, path: File.join(base_dir, "..", general)
+
+local_gem_names = [
+  "chupa-text",
+  "chupa-text-decomposer-pdf",
+]
+local_gem_names.each do |name|
+  local_dir = File.join(base_dir, "..", "..", name)
+  if File.exist?(local_dir)
+    gem name, :path => local_dir
   end
 end

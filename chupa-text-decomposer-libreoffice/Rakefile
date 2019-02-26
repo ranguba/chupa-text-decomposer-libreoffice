@@ -1,6 +1,6 @@
 # -*- ruby -*-
 #
-# Copyright (C) 2019  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2014-2019  Kouhei Sutou <kou@clear-code.com>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -16,24 +16,33 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+task :default => :test
+
 require "pathname"
 
-task :default => :test
+require "rubygems"
+require "bundler/gem_helper"
+require "packnga"
+
+base_dir = Pathname(__dir__)
+
+helper = Bundler::GemHelper.new(base_dir.to_s)
+def helper.version_tag
+  "#{name}-#{version}"
+end
+
+helper.install
+spec = helper.gemspec
+
+Packnga::DocumentTask.new(spec) do |task|
+  task.original_language = "en"
+  task.translate_language = "ja"
+end
+
+Packnga::ReleaseTask.new(spec) do
+end
 
 desc "Run tests"
 task :test do
-  FileList["*/test/run-test.rb"].each do |run_test_rb|
-    cd(Pathname(run_test_rb).parent.parent) do
-      ruby("test/run-test.rb")
-    end
-  end
-end
-
-desc "Release"
-task :release do
-  FileList["*/*.gemspec"].each do |gemspec|
-    cd(Pathname(gemspec).parent) do
-      ruby("-S", "rake", "release")
-    end
-  end
+  ruby("test/run-test.rb")
 end
