@@ -23,8 +23,8 @@ module ChupaText
 
       def initialize(options)
         super
-        @extension = "odt"
-        @mime_type = "application/vnd.oasis.opendocument.text"
+        @extensions = ["odt"]
+        @mime_types = ["application/vnd.oasis.opendocument.text"]
       end
 
       private

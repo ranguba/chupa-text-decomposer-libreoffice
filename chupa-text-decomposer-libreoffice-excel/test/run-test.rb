@@ -26,6 +26,6 @@ require "chupa-text"
 
 ChupaText::Decomposers.load
 
-require_relative "../../chupa-text-decomposer-libreoffice-general/test/helper"
+require_relative "../../chupa-text-decomposer-libreoffice/test/helper"
 
 exit(Test::Unit::AutoRunner.run(true))

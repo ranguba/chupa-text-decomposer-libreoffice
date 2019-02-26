@@ -23,8 +23,8 @@ module ChupaText
 
       def initialize(options)
         super
-        @extension = "xlsx"
-        @mime_type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        @extensions = ["xlsx"]
+        @mime_types = ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"]
       end
 
       private

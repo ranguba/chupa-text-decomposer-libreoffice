@@ -23,8 +23,8 @@ module ChupaText
 
       def initialize(options)
         super
-        @extension = "pptx"
-        @mime_type = "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+        @extensions = ["pptx"]
+        @mime_types = ["application/vnd.openxmlformats-officedocument.presentationml.presentation"]
       end
 
       private

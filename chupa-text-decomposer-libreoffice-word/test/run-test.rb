@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 #
-# Copyright (C) 2013  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2013-2019  Kouhei Sutou <kou@clear-code.com>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -26,6 +26,6 @@ require "chupa-text"
 
 ChupaText::Decomposers.load
 
-require_relative "../../chupa-text-decomposer-libreoffice-general/test/helper"
+require_relative "../../chupa-text-decomposer-libreoffice/test/helper"
 
 exit(Test::Unit::AutoRunner.run(true))

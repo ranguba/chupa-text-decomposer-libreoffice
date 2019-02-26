@@ -23,8 +23,8 @@ module ChupaText
 
       def initialize(options)
         super
-        @extension = "ods"
-        @mime_type = "application/vnd.oasis.opendocument.spreadsheet"
+        @extensions = ["ods"]
+        @mime_types = ["application/vnd.oasis.opendocument.spreadsheet"]
       end
 
       private

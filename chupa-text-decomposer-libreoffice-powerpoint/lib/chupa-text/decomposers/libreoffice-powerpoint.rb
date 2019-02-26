@@ -23,8 +23,8 @@ module ChupaText
 
       def initialize(options)
         super
-        @extension = "ppt"
-        @mime_type = "application/vnd.ms-powerpoint"
+        @extensions = ["ppt"]
+        @mime_types = ["application/vnd.ms-powerpoint"]
       end
 
       private

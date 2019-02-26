@@ -22,6 +22,9 @@ gemspec
 
 base_dir = File.dirname(__FILE__)
 
+general = "chupa-text-decomposer-libreoffice-general"
+gem general, path: File.join(base_dir, "..", general)
+
 local_gem_names = [
   "chupa-text",
   "chupa-text-decomposer-pdf",

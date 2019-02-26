@@ -23,8 +23,8 @@ module ChupaText
 
       def initialize(options)
         super
-        @extension = "docx"
-        @mime_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        @extensions = ["docx"]
+        @mime_types = ["application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
       end
 
       private

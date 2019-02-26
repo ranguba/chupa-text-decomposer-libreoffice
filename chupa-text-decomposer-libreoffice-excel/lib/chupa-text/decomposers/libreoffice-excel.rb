@@ -23,8 +23,8 @@ module ChupaText
 
       def initialize(options)
         super
-        @extension = "xls"
-        @mime_type = "application/vnd.ms-excel"
+        @extensions = ["xls"]
+        @mime_types = ["application/vnd.ms-excel"]
       end
 
       private

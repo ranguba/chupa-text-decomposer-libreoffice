@@ -39,15 +39,7 @@ Gem::Specification.new do |spec|
   spec.files += Dir.glob("doc/text/*")
   spec.files += Dir.glob("test/**/*")
 
-  spec.add_runtime_dependency("chupa-text-decomposer-libreoffice-opendocument-text")
-  spec.add_runtime_dependency("chupa-text-decomposer-libreoffice-opendocument-spreadsheet")
-  spec.add_runtime_dependency("chupa-text-decomposer-libreoffice-opendocument-presentation")
-  spec.add_runtime_dependency("chupa-text-decomposer-libreoffice-word")
-  spec.add_runtime_dependency("chupa-text-decomposer-libreoffice-excel")
-  spec.add_runtime_dependency("chupa-text-decomposer-libreoffice-powerpoint")
-  spec.add_runtime_dependency("chupa-text-decomposer-libreoffice-office-open-xml-document")
-  spec.add_runtime_dependency("chupa-text-decomposer-libreoffice-office-open-xml-workbook")
-  spec.add_runtime_dependency("chupa-text-decomposer-libreoffice-office-open-xml-presentation")
+  spec.add_runtime_dependency("chupa-text-decomposer-libreoffice-general")
 
   spec.add_development_dependency("bundler")
   spec.add_development_dependency("rake")

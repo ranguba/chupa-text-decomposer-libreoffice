@@ -23,8 +23,8 @@ module ChupaText
 
       def initialize(options)
         super
-        @extension = "doc"
-        @mime_type = "application/msword"
+        @extensions = ["doc"]
+        @mime_types = ["application/msword"]
       end
 
       private

@@ -1,4 +1,4 @@
-# Copyright (C) 2014-2017  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2014-2019  Kouhei Sutou <kou@clear-code.com>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -34,32 +34,10 @@ module ChupaText
         end
       end
 
-      TARGET_EXTENSIONS = [
-        "odt",
-        "ods",
-        "odp",
-        "doc",
-        "xls",
-        "ppt",
-        "docx",
-        "xlsx",
-        "pptx",
-      ]
-      TARGET_MIME_TYPES = [
-        "application/vnd.oasis.opendocument.text",
-        "application/vnd.oasis.opendocument.presentation",
-        "application/vnd.oasis.opendocument.spreadsheet",
-        "application/msword",
-        "application/vnd.ms-excel",
-        "application/vnd.ms-powerpoint",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-      ]
       def target?(data)
         return false if @command.nil?
-        data.extension == @extension or
-          data.mime_type == @mime_type
+        @extensions.include?(data.extension) or
+          @mime_types.include?(data.mime_type)
       end
 
       def decompose(data)
