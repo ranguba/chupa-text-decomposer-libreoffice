@@ -21,7 +21,7 @@ clean_white_space = lambda do |entry|
 end
 
 Gem::Specification.new do |spec|
-  spec.name = "chupa-text-decomposer-libreoffice-word"
+  spec.name = "chupa-text-decomposer-libreoffice-spreadsheet"
   spec.version = "1.0.0"
   spec.homepage = "https://github.com/ranguba/chupa-text-decomposer-libreoffice"
   spec.authors = ["Kouhei Sutou"]
