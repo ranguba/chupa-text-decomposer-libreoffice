@@ -77,6 +77,8 @@ module ChupaText
           error_output = Tempfile.new("chupa-text-decomposer-libreoffice-error")
           succeeded = @command.run("--headless",
                                    "--nologo",
+                                   "--nolockcheck",
+                                   "--norestore",
                                    "--convert-to", "pdf",
                                    "--outdir", temporary_directory,
                                    data.path.to_s,
