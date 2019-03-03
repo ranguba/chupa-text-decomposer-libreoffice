@@ -73,19 +73,26 @@ module ChupaText
 
       def convert_to_pdf(data)
         Dir.mktmpdir do |temporary_directory|
-          output = Tempfile.new("chupa-text-decomposer-libreoffice-output")
-          error_output = Tempfile.new("chupa-text-decomposer-libreoffice-error")
-          succeeded = @command.run("--headless",
-                                   "--nologo",
+          home_directory = File.join(temporary_directory, "home")
+          FileUtils.mkdir_p(home_directory)
+          output_directory = File.join(temporary_directory, "output")
+          FileUtils.mkdir_p(output_directory)
+          stdout_path = File.join(temporary_directory, "stdout.log")
+          stderr_path = File.join(temporary_directory, "stderr.log")
+          succeeded = @command.run("--nologo",
                                    "--nolockcheck",
                                    "--norestore",
+                                   "--headless",
                                    "--convert-to", "pdf",
-                                   "--outdir", temporary_directory,
+                                   "--outdir", output_directory,
                                    data.path.to_s,
                                    {
+                                     :env => {
+                                       "HOME" => home_directory,
+                                     },
                                      :spawn_options => {
-                                       :out => output.path,
-                                       :err => error_output.path,
+                                       :out => stdout_path,
+                                       :err => stderr_path,
                                      },
                                    })
           unless succeeded
@@ -93,20 +100,20 @@ module ChupaText
               tag = "#{log_tag}[convert][exited][abnormally]"
               [
                 tag,
-                "output: <#{output.read}>",
-                "error: <#{error_output.read}>",
+                "output: <#{File.read(stdout_path)}>",
+                "error: <#{File.read(stderr_path)}>",
               ].join("\n")
             end
             return nil
           end
-          pdf_path, = Dir.glob("#{temporary_directory}/*.pdf")
+          pdf_path, = Dir.glob("#{output_directory}/*.pdf")
           if pdf_path.nil?
             error do
               tag = "#{log_tag}[convert][failed]"
               [
                 "#{tag}: LibreOffice may be running",
-                "output: <#{output.read}>",
-                "error: <#{error_output.read}>",
+                "output: <#{File.read(stdout_path)}>",
+                "error: <#{File.read(stderr_path)}>",
               ].join("\n")
             end
             return nil
