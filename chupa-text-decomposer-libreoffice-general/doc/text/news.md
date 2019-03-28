@@ -1,5 +1,11 @@
 # News
 
+## 1.0.3: 2019-03-28
+
+### Improvements
+
+  * Added support for chupa-text 1.2.2.
+
 ## 1.0.2: 2019-03-04
 
 ### Improvements
