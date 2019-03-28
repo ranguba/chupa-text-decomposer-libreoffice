@@ -87,6 +87,7 @@ module ChupaText
                                    "--outdir", output_directory,
                                    data.path.to_s,
                                    {
+                                     :data => data,
                                      :env => {
                                        "HOME" => home_directory,
                                      },
