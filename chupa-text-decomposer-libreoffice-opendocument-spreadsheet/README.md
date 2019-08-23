@@ -32,9 +32,11 @@ Now, you can extract text and meta-data from office files:
 % chupa-text spreadsheet.ods
 ```
 
-## Author
+## Authors
 
   * Kouhei Sutou `<kou@clear-code.com>`
+
+  * Shimadzu Corporation
 
 ## License
 

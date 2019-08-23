@@ -33,9 +33,11 @@ Now, you can extract text and meta-data from office files:
 % chupa-text workbook.xlsx
 ```
 
-## Author
+## Authors
 
   * Kouhei Sutou `<kou@clear-code.com>`
+
+  * Shimadzu Corporation
 
 ## License
 
